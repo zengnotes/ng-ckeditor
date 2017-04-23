@@ -26,7 +26,9 @@ app.directive('ckeditor', ['$timeout', '$q', function ($timeout, $q) {
     return {
         restrict: 'AC',
         require: ['ngModel', '^?form'],
-        scope: false,
+        scope: {
+                ckeditor: '='
+        },
         link: function (scope, element, attrs, ctrls) {
             var ngModel = ctrls[0];
             var form    = ctrls[1] || null;
@@ -61,7 +63,7 @@ app.directive('ckeditor', ['$timeout', '$q', function ($timeout, $q) {
                     height: '400px',
                     width: '100%'
                 };
-                options = angular.extend(options, scope[attrs.ckeditor]);
+                options = angular.extend(options, scope.ckeditor);
 
                 var instance = (isTextarea) ? CKEDITOR.replace(element[0], options) : CKEDITOR.inline(element[0], options),
                     configLoaderDef = $q.defer();

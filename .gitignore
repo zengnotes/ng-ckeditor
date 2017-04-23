@@ -5,3 +5,4 @@ components
 bower_components
 vendor
 out
+.DS_Store
